@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Doom.iml" filepath="$PROJECT_DIR$/Doom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ray-casting.iml" filepath="$PROJECT_DIR$/ray-casting.iml" />
     </modules>
   </component>
 </project>
