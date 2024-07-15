@@ -81,6 +81,43 @@ public class Vector {
         return this;
     }
 
+    public static Vector lineIntersect(Vector a, Vector b, Vector c, Vector d) {
+        double denominator = (a.x - b.x) * (c.y - d.y) - (a.y - b.y) * (c.x - d.x);
+        if(Math.abs(denominator) < 1e-9) {
+            return null;
+        }
+        double t = ((a.x - c.x) * (c.y - d.y) - (a.y - c.y) * (c.x - d.x)) / denominator;
+        double u = -((a.x - b.x) * (a.y - c.y) - (a.y - b.y) * (a.x - c.x)) / denominator;
+        if(t < 0 || t > 1 || u < 0 || u > 1) {
+            return null;
+        }
+        return new Vector(a.x + t * (b.x - a.x), a.y + t * (b.y - a.y));
+    }
+
+    public static Vector rayIntLine(Vector origin, Vector direction, Vector start, Vector end) {
+        Vector v1 = origin.copy().subtract(start);
+        Vector v2 = end.copy().subtract(start);
+        Vector v3 = new Vector(-direction.getY(), direction.getX());
+        double dotProduct = v2.dot(v3);
+        if(Math.abs(dotProduct) < 1e-9) {
+            return null;
+        }
+        double t1 = v2.cross(v1) / dotProduct;
+        double t2 = v1.dot(v3) / dotProduct;
+        if(t1 < 0 || t2 < 0 || t2 > 1) {
+            return null;
+        }
+        return direction.copy().multiply(t1).add(origin);
+    }
+
+    public double cross(Vector v) {
+        return x * v.y - y * v.x;
+    }
+
+    public double dot(Vector v) {
+        return x * v.x + y * v.y;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
