@@ -4,12 +4,13 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Config {
-    public static int SCREEN_WIDTH;
-    public static int SCREEN_HEIGHT;
-    public static int SCREEN_SIZE;
-    public static int HALF_WIDTH;
-    public static int HALF_HEIGHT;
-    public static double ASPECT_RATIO;
+    public static final int SCREEN_WIDTH;
+    public static final int SCREEN_HEIGHT;
+    public static final int SCREEN_SIZE;
+    public static final int HALF_WIDTH;
+    public static final int HALF_HEIGHT;
+    public static final double ASPECT_RATIO;
+    public static boolean DOUBLE_BUFFERING;
     public static int DRAW_DISTANCE;
     public static int MOUSE_SENSITIVITY;
 
@@ -25,6 +26,7 @@ public class Config {
             FileInputStream fis = new FileInputStream("config.properties");
             Properties prop = new Properties();
             prop.load(fis);
+            DOUBLE_BUFFERING = Boolean.parseBoolean(prop.getProperty("double_buffering"));
             DRAW_DISTANCE = Integer.parseInt(prop.getProperty("draw_distance"));
             MOUSE_SENSITIVITY = Integer.parseInt(prop.getProperty("mouse_sensitivity"));
             fis.close();
