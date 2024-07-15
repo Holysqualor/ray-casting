@@ -1,22 +1,11 @@
 public class Movable {
     private Vector position;
-    private final Vector forward, right;
-    private boolean movingForward, movingBackward, movingRight, movingLeft, running;
-    private final Scene scene;
+    private final Vector forward = new Vector(0, 1);
+    private final Vector right = new Vector(1, 0);
+    private boolean movingForward = false, movingBackward = false, movingRight = false, movingLeft = false, running = false;
 
-    public Movable(double x, double y, Scene scene) {
-        this.scene = scene;
+    public Movable(double x, double y) {
         position = new Vector(x, y);
-        forward = new Vector(0, 1);
-        right = new Vector(1,0);
-        movingForward = false;
-        movingBackward = false;
-        movingRight = false;
-        movingLeft = false;
-    }
-
-    public Scene getScene() {
-        return scene;
     }
 
     public Vector getPosition() {
@@ -70,7 +59,7 @@ public class Movable {
         }
         if(!direction.isZero()) {
             Vector newPosition = direction.normalize().multiply(running ? 0.3 : 0.1).add(position);
-            if(scene.isFree(newPosition)) {
+            if(Scene.isFree(newPosition)) {
                 position = newPosition;
             }
         }
