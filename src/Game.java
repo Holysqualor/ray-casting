@@ -3,8 +3,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Game extends JFrame {
-    private final Movable camera = new Movable(0, 0, new Scene());
     private Robot robot;
+    private final Movable camera;
 
     public Game() {
         super("Doom");
@@ -16,11 +16,12 @@ public class Game extends JFrame {
         setFocusable(true);
         requestFocusInWindow();
         setVisible(true);
-        Display display = new Display(camera);
+        Display display = new Display();
         add(display);
+        camera = Scene.getCamera();
         Timer timer = new Timer( 0, e -> {
             display.repaint();
-            camera.update();
+            Scene.update();
         });
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Image image = toolkit.createImage("");
