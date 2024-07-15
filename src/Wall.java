@@ -12,38 +12,6 @@ public class Wall implements Obstacle {
         length = start.getDistance(end);
     }
 
-    /*@Override
-    public Layer intersects(Vector origin, Vector left, Vector right) {
-        Vector a = Vector.lineIntersect(start, end, origin, left);
-        Vector b = Vector.lineIntersect(start, end, origin, right);
-        Vector c = Vector.lineIntersect(start, end, left, right);
-        boolean startBelongsToTriangle = start.belongsToTriangle(origin, left, right);
-        boolean endBelongsToTriangle = end.belongsToTriangle(origin, left, right);
-        if(c == null) {
-            if(a != null && b == null) {
-                b = endBelongsToTriangle ? end.copy() : start.copy();
-            } else if(a == null && b != null) {
-                a = startBelongsToTriangle ? start.copy() : end.copy();
-            } else if(startBelongsToTriangle && endBelongsToTriangle) {
-                a = start.copy();
-                b = end.copy();
-            }
-        } else {
-            if(a == null && b == null) {
-                a = startBelongsToTriangle ? start.copy() : end.copy();
-                b = c;
-            } else if(a == null) {
-                a = c;
-            } else if(b == null) {
-                b = c;
-            }
-        }
-        if(a == null || b == null) {
-            return null;
-        }
-        return new Layer(a, b, origin.getDistance(a.copy().add(b).multiply(0.5)), this);
-    }*/
-
     @Override
     public Layer project(Vector origin, Vector leftLimit, Vector rightLimit, Vector firstPixel, Vector lastPixel) {
         Vector offset1 = Vector.lineIntersect(start, origin, firstPixel, lastPixel);
