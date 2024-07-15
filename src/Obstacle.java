@@ -1,5 +1,7 @@
+import java.awt.*;
+
 public interface Obstacle {
-    Intersection intersect(Vector origin, Vector destination);
+    Layer project(Vector origin, Vector leftLimit, Vector rightLimit, Vector firstPixel, Vector lastPixel);
     boolean belongs(Vector position);
-    int getColor(Vector intersection);
+    Color getColor();
 }
