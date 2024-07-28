@@ -18,8 +18,8 @@ public class Scene {
         return obstacles.stream().noneMatch(obstacle -> obstacle.belongs(position));
     }
 
-    public static List<Layer> getCanvas(Vector origin, Vector leftLimit, Vector rightLimit, Vector firstPixel, Vector lastPixel) {
-        return obstacles.stream().map(obstacle -> obstacle.project(origin, leftLimit, rightLimit, firstPixel, lastPixel)).filter(Objects::nonNull).sorted().toList();
+    public static List<Layer> getCanvas(Vector origin, Vector left, Vector right) {
+        return obstacles.stream().map(obstacle -> obstacle.project(origin, left, right)).filter(Objects::nonNull).sorted().toList();
     }
 
     public static Movable getCamera() {
