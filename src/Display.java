@@ -19,9 +19,9 @@ public class Display extends JPanel {
         g.setColor(Color.DARK_GRAY);
         g.fillRect(0, Config.HALF_HEIGHT, Config.SCREEN_WIDTH, Config.HALF_HEIGHT);
         Vector position = camera.getPosition(), forward = camera.getForward();
-        Vector leftLimit = camera.getRight().multiply(-Config.ASPECT_RATIO).add(forward).normalize();
-        Vector rightLimit = camera.getRight().multiply(Config.ASPECT_RATIO).add(forward).normalize();
-        List<Layer> canvas = Scene.getCanvas(position, leftLimit, rightLimit, leftLimit.copy().add(position), rightLimit.copy().add(position));
+        Vector left = camera.getRight().multiply(-Config.ASPECT_RATIO).add(forward).normalize();
+        Vector right = camera.getRight().multiply(Config.ASPECT_RATIO).add(forward).normalize();
+        List<Layer> canvas = Scene.getCanvas(position, left, right);
         for(Layer layer : canvas) {
             int x1 = (int) (Config.SCREEN_WIDTH * layer.offset1());
             int x2 = (int) (Config.SCREEN_WIDTH * layer.offset2());
