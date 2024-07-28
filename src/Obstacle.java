@@ -1,7 +1,7 @@
 import java.awt.*;
 
 public interface Obstacle {
-    Layer project(Vector origin, Vector leftLimit, Vector rightLimit, Vector firstPixel, Vector lastPixel);
+    Layer project(Vector origin, Vector left, Vector right);
     boolean belongs(Vector position);
     Color getColor();
 }
